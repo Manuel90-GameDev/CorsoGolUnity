@@ -15,11 +15,17 @@
 11. Finito di modellare, elimino il plane ed esco dal prefab
 12. inserito il prefab come figlio del GameObject "Walls"
 13. Duplicati i prefab e allineati l'uno all'altro sfruttando la shortcut V per attaccare i vertici
-14. Per il pavimento e per il tetto si potrebbero creare prefab dedicati, ma per velocizzare il processo bastano 2 plane 
+14. Per il pavimento e per il tetto si potrebbero creare prefab dedicati, ma per velocizzare il processo bastano 2 plane
     modellati in base alla superficie della stanza
 15. Dal GameObject "Floors" si crea un plane e si modella
 16. Duplicato il plane floor, rinominato "roof" ruotato e posizionato come tetto della stanza
 17. Per i props fatto un tavolo utilizzando i cubi (Stesso procedimento dei wall)
+18. Creazione di un props (asse di legno) da posizionare in giro per la stanza (prefab) 
+19. posizionare alcune assi di legno nella stanza
+20. Creazione cartella "Material" per materiali
+21. Creazione materiale per assi di legno
+22. Assegna il materiale al prefab delle assi
+23. Creazione di altri materiali di prova da assegnare agli altri oggetti in scena (pavimento, tavolo, ecc.)
 
 
 
@@ -27,14 +33,11 @@
 
 
 
-* Per una migliore suddivisione della scena di gioco, ho preferito inserire tutti gli oggetti considerati *statici* in un 
+* Per una migliore suddivisione della scena di gioco, ho preferito inserire tutti gli oggetti considerati *statici* in un
   GameObject padre chiamato "Environment", inoltre cosi facendo si e' possibile attivare il flag static su tutti gli oggetti figli
   in un unica volta
-* Ho preferito creare prefab dei singoli muri, pavimenti ecc. in modo tale da poter applicare una sola volta lo stile 
+* Ho preferito creare prefab dei singoli muri, pavimenti ecc. in modo tale da poter applicare una sola volta lo stile
   (material ecc.) e applicarlo a tutti gli oggetti collegati al prefab
 * Per creare prefab dei muri, pavimenti ecc. ho preferito creare il prefab da un GameObject vuoto. In questo modo posso impostare il pivot del prefab su un vertice del muro o pavimento o l'oggetto in questione
-* Per allineare un vertice del cubo al pivot, si crea temporaneamente un piccolo plane di dimensione 0.1 che faccia da "ancora" 
+* Per allineare un vertice del cubo al pivot, si crea temporaneamente un piccolo plane di dimensione 0.1 che faccia da "ancora"
   per il vertice dell'oggetto 3D
-
-
-
