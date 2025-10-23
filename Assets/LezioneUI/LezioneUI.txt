@@ -1,0 +1,23 @@
+PARTE 1 (Senza usare il GameManager)
+1) Crea una nuova scena in Unity e chiamala "LezioneUI".
+2) Aggiungi un Canvas alla scena (GameObject -> UI -> Canvas) e chiamalo "CanvasManager".
+3) All'interno del Canvas, crea un pannello (GameObject -> UI -> Panel) e chiamalo "PannelloControllo".
+4) All'interno del PannelloControllo, aggiungi un testo (GameObject -> UI -> Text) e chiamalo "TestoLezione". Imposta il testo iniziale a "Lezione UI".
+5) Aggiungi un bottone (GameObject -> UI -> Button) all'interno del PannelloControllo e chiamalo "BottoneMostraTesto". Cambia il testo del bottone in "Cambia Testo".
+6) Aggiungi un testo (GameObject -> UI -> Text) all'interno del Canvas e chiamalo "MostraTesto". Imposta il testo iniziale a "Questo testo viene mostrato solo se clicca sul pulsante".
+7) Crea uno script C# chiamato "LezioneUIScript" e attaccalo al "CanvasManager".
+8) Apri lo script e implementa la logica per mostrare il testo di "MostraTesto" quando si clicca sul "BottoneMostraTesto".
+9) Mostra il problema di quando si cambia la risoluzione dello schermo e i vari oggetti non si adattano contemporaneamente:
+  - Imposta il Canvas su "Scale With Screen Size".
+  - Reference Resolution: 1920x1080.
+  - Screen Match Mode: Match Width Or Height.
+  - Match: 0.5.
+10) Mostra l'immagine con l'Anchors disegnato e spiegare come funziona.
+  - Aggiornare gli Anchors degli oggetti nel Canvas per mostrare come si comportano quando si ridimensiona la finestra di gioco.
+11) Crea un GameObject vuoto chiamato "SOMMA" come figlio del Canvas.
+12) Aggiungi due Input Field (GameObject -> UI -> Input Field) come figli di "SOMMA" e chiamali "InputNumero1" e "InputNumero2".
+13) Aggiungi un bottone (GameObject -> UI -> Button) come figlio di "SOMMA" e chiamalo "BottoneSomma". Cambia il testo del bottone in "=".
+14) Aggiungi un testo (GameObject -> UI -> Text) come figlio di "SOMMA" e chiamalo "TestoRisultato". Imposta il testo iniziale a "0".
+15) Modifica lo script "LezioneUIScript" per implementare la logica di somma dei due numeri inseriti negli Input Field quando si clicca sul "BottoneSomma" e mostra il risultato nel "TestoRisultato".
+
+PARTE 2 (Usando il GameManager)
