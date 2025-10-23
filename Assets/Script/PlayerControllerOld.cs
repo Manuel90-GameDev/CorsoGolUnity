@@ -21,6 +21,8 @@ public class PlayerControllerOld : MonoBehaviour
 
     private void Awake()
     {
+        GameManager.Instance.Player = gameObject; // Registro al GameManager l'oggetto player, cosi da poterlo sfruttare in altri punti del gioco
+
         characterController = GetComponent<CharacterController>(); // Ottieni character controller del player
     }
 
