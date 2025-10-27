@@ -1,0 +1,15 @@
+PARTE 1 - Da codice (Senza usare l'interfaccia IInteractable)
+1) Crea la Scene " Animazione "
+2) Crea un cubo di nome " CuboRotazione "
+  - Fare lo script " Rotazione " per far ruotare il cubo su se stesso
+3) Crea un cubo di nome " CuboSposta "
+  - Fare lo script " Sposta " per far spostare il cubo avanti e indietro
+4) Crea una sfera di nome " SferaScala "
+  - Fare lo script " Scala " per far scalare la sfera in effetto " Respiro "
+5) Crea un cubo di nome " CuboLerpIsSlurp "
+  - Fare lo script " LerpIsSlurp " per far muovere il cubo da una posizione A a una posizione B con Lerp
+6) IN CASO SI ABBIA TEMPO
+  - Fare lo script " LerpIsSlurpV2 " per far muovere il cubo da una posizione A a una posizione B e tornare indietro con Lerp
+7) Crea un GameObject vuoto di nome " AxePivot "
+  - Crea una Sphere di nome " AxeHead " come figlio di " AxePivot " e spostala di -3 sulla Y
+  - Crea lo script " AxeSwing " per far oscillare l'ascia avanti e indietro come un pendolo
