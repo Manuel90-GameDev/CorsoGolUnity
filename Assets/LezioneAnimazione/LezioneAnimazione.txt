@@ -43,3 +43,8 @@ PARTE 2 - Con Animation e Animator
 
 PARTE 3 - Con l'interfaccia IInteractable
 1) Carica la Scene " World "
+2) Seleziona un albero nella scena e aggiungi un BoxCollider
+  - Imposta il BoxCollider
+  - Controlla che non sia " Static "
+3) Fai l'animazione " CadutaAlbero " per far cadere l'albero
+  - Controlla di aver messo " Pivot " e no " Center "
