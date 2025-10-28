@@ -40,3 +40,6 @@ PARTE 2 - Con Animation e Animator
   - Crea una nuova animazione per far cambiare il colore della luce
 10) Crea una UI Text chiamata " TestoAnimato "
   - Crea una nuova animazione per far cambiare il colore del testo
+
+PARTE 3 - Con l'interfaccia IInteractable
+1) Carica la Scene " World "
