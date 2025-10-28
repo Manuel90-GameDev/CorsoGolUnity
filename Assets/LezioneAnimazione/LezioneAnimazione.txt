@@ -13,3 +13,30 @@ PARTE 1 - Da codice (Senza usare l'interfaccia IInteractable)
 7) Crea un GameObject vuoto di nome " AxePivot "
   - Crea una Sphere di nome " AxeHead " come figlio di " AxePivot " e spostala di -3 sulla Y
   - Crea lo script " AxeSwing " per far oscillare l'ascia avanti e indietro come un pendolo
+
+PARTE 2 - Con Animation e Animator
+1) Crea un cubo di nome " CuboRotzione "
+2) Aggiungi la TAB Animation (Window -> Animation -> Animation)
+3) Seleziona il cubo e clicca su " Create " nella TAB Animation per creare una nuova animazione
+4) Spiega come funziona l'animazione keyframe per far muovere, ruotare e scalare il cubo
+  - Puoi impostare sia Frame che Secondi
+    - Frame -> 60 FPS -> 60 Frame = 1 Secondo
+    - Secondi -> 1 Secondo = 60 Frame
+5) Spiega che per ogni oggetto c'è un componente Animator che gestisce le Animation
+6) Fai ruotare il cubo di 360 gradi in 2 secondi
+  - 120 in Seconds = 2 Secondi
+7) Crea un cubo di nome " CuboSposta "
+  - Crea una nuova animazione per far spostare il cubo da 0,0,0 a 0,0,10 in 3 secondi
+  - Far vedere le curve sull'asse Y
+    - Simula l'effetto di salto e onda
+    - Fare qualcosa ogni secondo
+      - Primo: Ruotare semplicemente le tangenti della curva
+      - Secondo: Rompere la tangente e smanettare con una delle due
+      - Terzo: Rompere la tengente e una delle due farla " Wighted "
+      - Quarto: Aggiungere un keyframe in mezzo e smanettare con le tangenti
+8) Mostra le curve di interpolazione (Linear, Ease In, Ease Out, Ease In Out)
+  - Rendi l'animazione del cubo più " curva " e non " lineare "
+9) Metti in scena una Luce chiamata " LuceAnimata "
+  - Crea una nuova animazione per far cambiare il colore della luce
+10) Crea una UI Text chiamata " TestoAnimato "
+  - Crea una nuova animazione per far cambiare il colore del testo
