@@ -8,10 +8,23 @@ public class CanvasManagerGame : MonoBehaviour
     [SerializeField] private TMP_InputField inputFieldSalva;
     [SerializeField] private TextMeshProUGUI testoSalva;
 
+    private void Awake()
+    {
+        /*
+         * SECONDO MODO LEZIONE UI
+         * 
+         * Singleton Gamemanager -> Assicura che nella scena ne esista solamente
+         * Il problema di farlo in questo modo e che se ci sono piu canvas in scena
+         * Non si ha un totale controllo se si hanno CanvasManager multipli o diversi tra loro
+         */
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        GameManager.Instance.CanvasManagerGame = this; //SECONDO MODO LEZIONE UI
+        //this -> riferimento all'istanza corrente di questo script
     }
 
     // Update is called once per frame
@@ -27,6 +40,9 @@ public class CanvasManagerGame : MonoBehaviour
     public void SalvaTesto()
     {
         testoSalva.text = inputFieldSalva.text;
+
+        //PRIMO MODO LEZIONE UI
+        GameManager.Instance.TestoSalva = testoSalva;
     }
 
     public void CaricaScenaWorld()

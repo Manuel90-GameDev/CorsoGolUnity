@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,8 +9,13 @@ public class GameManager : MonoBehaviour
     // Qui sotto possono essere linkati riferimenti ad altri oggetti in gioco, cosi da poterli sfruttare in scena
     public GameObject Player { get; set; } // ESEMPIO: oggetto player -> Registrandolo qui ho accesso al Game Object del player in qualsiasi punto 
                                                 // NB: Ricordarsi di registrare oggetto/script 
-    
+
+    //PRIMO MODO LEZIONE UI
+    public TextMeshProUGUI TestoSalva { get; set; }  // Property per il testo di salvataggio
+
     // ** NOTE: REGISTRARE IL CANVAS QUANDO E' PRONTO
+    //SECONDO MODO LEZIONE UI
+    public CanvasManagerGame CanvasManagerGame { get; set; } // Property per il Canvas Manager
 
     private void Awake()
     {

@@ -21,3 +21,25 @@ PARTE 1 (Senza usare il GameManager)
 15) Modifica lo script "LezioneUIScript" per implementare la logica di somma dei due numeri inseriti negli Input Field quando si clicca sul "BottoneSomma" e mostra il risultato nel "TestoRisultato".
 
 PARTE 2 (Usando il GameManager)
+1) Apri la Scene "Room"
+2) Aggiungi un Canvas alla scena (GameObject -> UI -> Canvas) e chiamalo "CanvasManagerGame".
+3) All'interno del Canvas, crea un pannello (GameObject -> UI -> Panel) e chiamalo "PannelCambioScena".
+4) All'interno del PannelCambioScena, aggiungi due Input Field (GameObject -> UI -> Input Field).
+5) All'interno del PannelCambioScena, aggiungi un bottone (GameObject -> UI -> Button) e chiamalo "ButtonSalva".
+6) All'interno del PannelCambioScena, aggiungi un testo (GameObject -> UI -> Text) e chiamalo "TestoSalva" dove prenderà il testo scritto nel InputField.
+7) All'interno del PannelCambioScena, aggiungi un bottone (GameObject -> UI -> Button) e chiamalo "ButtonWorld".
+8) Crea uno script C# chiamato "LezioneUIGameManagerScript" e attaccalo al "CanvasManagerGame".
+  - Far vedere lo script senza registrarlo al GameManager e far vedere che non funziona al cambio scena.
+  - Spegni il PannelCambioScena.
+9) Modifica lo script "LezioneUIGameManagerScript" per implementare la parte con il GameManager. (DIVISA IN 2 MODI DIVERSI - Se c'è tempo si fa vedere entrambi)
+  - Primo modo: Non registrare il CanvasManagerGame al GameManager.
+    - Far vedere lo script che invia le informazioni al GameManager.
+      - Modifica il GameManager per salvare le informazioni inviate dal CanvasManagerGame.
+    - Copia il CanvasManagerGame nella scena "World".
+    - Accendi il PannelCambioScena nella scena "World".
+    - Al cambio scena far vedere come il GameManager invia le informazioni al nuovo CanvasManager dell'altra scena.
+    - Crea uno script C# chiamato "CanvasManagerWorld".
+      - Il CanvasManagerWorld nella scena "World" prende le informazioni salvate nel GameManager e le mostra nel "TestoSalva".
+  - Secondo modo: Registrare il CanvasManagerGame al GameManager.
+    - Spegni il CanvasManagerGame della scena "World". (Solo se hai fatto il primo modo)
+    - Commenta le modifiche fatte al GameManager nel primo modo. (Solo se hai fatto il primo modo)
