@@ -1,0 +1,14 @@
+PARTE 1 (Da vedere con Andrea)
+
+PARTE 2 (LoadScene)
+1) Apri la Scene "Room"
+2) Fai il cambio scena alla scena "World" usando LoadScene.
+  - Spiega che aver registrato il PlayerController al GameManager non lo rende DontDestroyOnLoad.
+3) Apri la Scene "World"
+  - Disattiva la Camera.
+4) Crea un GameObject vuoto chiamato "PlayerSpawnPoint" e posizionalo dove vuoi far spawnare il Player.
+5) Crea uno script C# chiamato "PlayerSpawnManager" e attaccalo al GameObject "PlayerSpawnPoint".
+6) Spiega diversi modi per gestire il passaggio del Player in un'altra scena.
+  - SpawPoint
+  - Figlio del GameManager
+  - DontDestroyOnLoad
