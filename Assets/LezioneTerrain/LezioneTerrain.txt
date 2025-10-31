@@ -17,3 +17,14 @@
   - Scarica l'asset "Mountain Terrain, Rocks and Tree" da Unity Asset Store.
   - Scarica l'asset "Free Trees" da Unity Asset Store.
     - Edit Tree Prototypes -> Add Tree -> Seleziona un albero dall'asset scaricato.
+7) Passa alla modalità "Paint Details":
+  - Scarica l'asset "Grass and Flowers Pack" da Unity Asset Store.
+  - Mostra come dipingere l'erba e i fiori sul terreno.
+    - Edit Detail Prototypes -> Add Grass Texture -> Seleziona una texture di erba dall'asset scaricato.
+    - Edit Detail Prototypes -> Add Detail Mesh -> Seleziona un fiore dall'asset scaricato.
+8) Passa alla modalità "Terrain Settings":
+  - Spiega le impostazioni principali come la dimensione del terreno, la risoluzione delle texture, e le impostazioni di illuminazione.
+9) Metti in scena il Player
+10) Installa il "Terrain Tools" tramite il Package Manager per funzionalità avanzate di modellazione del terreno."
+11) Scarica l'asset "Heightmap Generator" (faccio lo sborone =D)
+12) Crea un terreno utilizzando una heightmap generata proceduralmente.
