@@ -11,4 +11,8 @@
   - Smooth Height: Spiega come ammorbidire le irregolarità del terreno.
   - Paint Texture: Mostra come applicare texture diverse al terreno.
     - Scarica l'asset "Handpainted Grass & Ground Textures".
-    - Scarica l'asset "Mountain Terrain, Rocks and Tree" da Unity Asset Store.
+    - Crea diversi layer di texture (erba, terra, roccia) e applicali al terreno.
+      - Edit Terrain Layers -> Create Layer -> Seleziona la texture desiderata.
+6) Passa alla modalità "Paint Trees":
+  - Scarica l'asset "Mountain Terrain, Rocks and Tree" da Unity Asset Store.
+    - Edit Tree Prototypes -> Add Tree -> Seleziona un albero dall'asset scaricato.
