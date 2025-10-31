@@ -15,4 +15,5 @@
       - Edit Terrain Layers -> Create Layer -> Seleziona la texture desiderata.
 6) Passa alla modalità "Paint Trees":
   - Scarica l'asset "Mountain Terrain, Rocks and Tree" da Unity Asset Store.
+  - Scarica l'asset "Free Trees" da Unity Asset Store.
     - Edit Tree Prototypes -> Add Tree -> Seleziona un albero dall'asset scaricato.
