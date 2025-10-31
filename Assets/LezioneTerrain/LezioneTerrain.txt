@@ -10,3 +10,4 @@
   - Raise/Lower Terrain: Mostra come scolpire il terreno.
   - Smooth Height: Spiega come ammorbidire le irregolarità del terreno.
   - Paint Texture: Mostra come applicare texture diverse al terreno.
+    - Scarica l'asset "Mountain Terrain, Rocks and Tree" da Unity Asset Store.
