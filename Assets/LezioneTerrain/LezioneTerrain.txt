@@ -1,0 +1,12 @@
+1) Crea la scena "LezioneTerrain".
+2) Crea un terreno (GameObject -> 3D Object -> Terrain).
+  - Piazza un cubo (0.5,0.5,0.5) per far vedere la scala del terreno.
+3) Seleziona il terreno nella gerarchia e vai al pannello "Inspector".
+  - Spiega rapidamente le 5 icone principali del Terrain Inspector (Neighbor Terrains, Paint Terrain, Paint Trees, Paint Details, Terrain Settings).
+4) Mostra il Neighbor Terrains:
+  - Spiega come collegare più terreni insieme per creare un'area più grande.
+5) Passa alla modalità "Paint Terrain":
+  - Set Height: Spiega come alzare o abbassare il terreno.
+  - Raise/Lower Terrain: Mostra come scolpire il terreno.
+  - Smooth Height: Spiega come ammorbidire le irregolarità del terreno.
+  - Paint Texture: Mostra come applicare texture diverse al terreno.
