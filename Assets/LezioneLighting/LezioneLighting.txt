@@ -1,0 +1,31 @@
+BUILT-IN (Se si usano i portatili di ANT)
+1) Crea la Scene "Lighting".
+2) Copia la "Room" della Scene "Room".
+  - Spegni i muri davanti la Camera, così si vede meglio l'illuminazione e si vedrà il risultato più facilmente.
+3) Spiega rapidamente le luci in Unity (GameObject -> Light -> ...):
+  - Directional Light: luce principale che simula il sole.
+  - Point Light: luce che emana in tutte le direzioni da un punto specifico.
+  - Spot Light: luce che emana da un punto specifico in una direzione con un angolo definito.
+  - Area Light (Solo con il Path Tracing): luce che emana da una superficie rettangolare.
+  - Reflection Probe: cattura l’ambiente circostante per generare riflessi realistici sugli oggetti statici.
+  - Light Probe Group: memorizza informazioni di illuminazione in punti dello spazio, per illuminare correttamente oggetti dinamici senza usare luci in tempo reale.
+4) Spiega il Component Light nell'Inspector:
+  - Type: Tipo di luce (Directional, Point, Spot, Area).
+  - Color: Colore della luce.
+  - Intensity: Intensità della luce.
+  - Range (Solo per Point e Spot): Distanza massima a cui la luce ha effetto.
+  - Spot Angle (Solo per Spot): Angolo del cono di luce.
+  - Shadows: Tipo di ombre generate dalla luce (No Shadows, Hard Shadows, Soft Shadows).
+5) Mostra i Settings (Window -> Lighting)
+  - Scene: Impostazioni specifiche per la scena corrente.
+  - Environment Lighting: Impostazioni per l'illuminazione ambientale.
+  - Baked Lighmaps: Impostazioni per le luci pre-calcolate.
+6) Crea un uno SkyBox personalizzato (New Material -> Shader: SkyBox/Procedural) (Se c'è tempo)
+7) Spegni la Directional Light e crea una Point Light:
+  - Smanetta con la Point Light per mostrare come funziona.
+8) Crea qualche Point Light in giro per la scena per creare un'illuminazione interessante.
+9) Spegni le Point Light e crea una Spot Light:
+  - Smanetta con la Spot Light per mostrare come funziona.
+10) Crea qualche Spot Light in giro per la scena per creare un'illuminazione interessante.
+11) Spiega la definizione di "Bake e Baked".
+12) Crea un nuovo "Lighting Settings".
