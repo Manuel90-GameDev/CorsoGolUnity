@@ -36,3 +36,4 @@ BUILT-IN (Se si usano i portatili di ANT)
   - Non dovrebbe andare a buon fine, gli oggetti non sono Static
 14) Metti gli oggetti "Stati" e rifai il Bake
 15) Spiega la parte Static e l'Inspector degli oggetti statici cosa cambia
+  - Sposta un oggetto statico per far vedere l'ombra "Cucinata" =D
