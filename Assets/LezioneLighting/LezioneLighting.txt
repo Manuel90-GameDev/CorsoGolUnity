@@ -37,3 +37,7 @@ BUILT-IN (Se si usano i portatili di ANT)
 14) Metti gli oggetti "Stati" e rifai il Bake
 15) Spiega la parte Static e l'Inspector degli oggetti statici cosa cambia
   - Sposta un oggetto statico per far vedere l'ombra "Cucinata" =D
+16) Rifai un Bake con l'Ambient Occlusion impostato nei Settings
+17) Metti una Reflection Probe
+
+POST PROCESSING (Solo se c'è tempo)
