@@ -2217,6 +2217,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Asse (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 417999077999887522, guid: 869066b5362f84f429524a92227a1155, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6056872421459261504, guid: 869066b5362f84f429524a92227a1155, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.45

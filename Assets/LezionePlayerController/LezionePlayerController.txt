@@ -1,4 +1,21 @@
 PARTE 1 (Da vedere con Andrea)
+1. Creazione di un prefab "PlayerOldInput" e "PlayerNewInput (Se c'è tempo)" utilizzando una capsula
+2. Sposto la MainCamera come figlia del Player per la visuale in prima persona
+3. Posiziono la Camera in altezza muovendola sull'asse Y
+4. Aggiungo il componente "CharacterController" al player
+5. Assegno il tag "Player" al prefab del player
+6. Assegno al floor il layer ground, servira' successivamente per implementare il salto
+7. Creazione dello script PlayerControllerOld per il vecchio input system
+8. Assegno al PlayerOldInput lo script appena creato
+9. Implemento le meccaniche di movimento e rotazione camera
+  - Far vedere il movimento
+    - Test in scena
+  - Far vedere la rotazione di camera
+    - Test in scena
+10. Assegnare il Tag "Player"
+11. Implementare la meccanica del Jump
+12. Per il nuovo Input System unity mette gia' a disposizione un biding di tasti predefinito, se non c'e' tempo
+    si puo' utilizzare quello, altrimenti si cancella e si seguono gli step per la creazione dell'input system
 
 PARTE 2 (LoadScene)
 1) Apri la Scene "Room"

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //Step 1
     // Istanza del manager pubblica e statica, cosi da essere accessibile ad altri script
     public static GameManager Instance { get; private set; } // Properties per richiamare il manager 
 
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject Player { get; set; } // ESEMPIO: oggetto player -> Registrandolo qui ho accesso al Game Object del player in qualsiasi punto 
                                                 // NB: Ricordarsi di registrare oggetto/script 
 
+    //Step 2
     //PRIMO MODO LEZIONE UI
     public TextMeshProUGUI TestoSalva { get; set; }  // Property per il testo di salvataggio
 
