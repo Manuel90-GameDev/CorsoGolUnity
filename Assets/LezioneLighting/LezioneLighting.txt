@@ -29,3 +29,10 @@ BUILT-IN (Se si usano i portatili di ANT)
 10) Crea qualche Spot Light in giro per la scena per creare un'illuminazione interessante.
 11) Spiega la definizione di "Bake e Baked".
 12) Crea un nuovo "Lighting Settings".
+  - Realtime Lighting: gestisce le luci calcolate in tempo reale durante il gioco. (Non si attiva quasi mai questo)
+  - Mixed Lighting: combina luci baked e realtime per ottimizzare qualità e prestazioni.
+  - Lightmapping Settings: controlla come vengono calcolate e salvate le lightmap durante il bake.
+13) Imposta le luci come "Baked" e fai un Bake.
+  - Non dovrebbe andare a buon fine, gli oggetti non sono Static
+14) Metti gli oggetti "Stati" e rifai il Bake
+15) Spiega la parte Static e l'Inspector degli oggetti statici cosa cambia
