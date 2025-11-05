@@ -2340,7 +2340,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928304773}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f6d2e5cf0f49e7644bce76a51abb6497, type: 2}
   m_CullingMode: 0
@@ -2371,7 +2371,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 2.587016, y: 2.5870175, z: 4.9767914}
   m_Center: {x: -0.03244841, y: -0.03244806, z: 2.406354}
