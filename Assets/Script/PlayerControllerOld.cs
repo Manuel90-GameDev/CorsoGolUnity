@@ -11,19 +11,21 @@ public class PlayerControllerOld : MonoBehaviour
 
     [Header("Jump & Gravity")]
     [SerializeField] float jumpHeight = 1.6f;        // Altezza del salto in metri
-    [SerializeField] float gravity = -9.81f;         // Gravità
+    [SerializeField] float gravity = -9.81f;         // Gravitï¿½
     [SerializeField] float groundedGravity = -2f;    // Spinta verso il basso per restare ancorati al terreno
 
     private float xRotation = 0f;
     private Vector3 velocity;
     private CharacterController characterController;
-    private float verticalVelocity; // Velocità verticale accumulata (gravità/salto)
+    private InteractionController interactionController;
+    private float verticalVelocity; // Velocitï¿½ verticale accumulata (gravitï¿½/salto)
 
     private void Awake()
     {
         GameManager.Instance.Player = gameObject; // Registro al GameManager l'oggetto player, cosi da poterlo sfruttare in altri punti del gioco
 
         characterController = GetComponent<CharacterController>(); // Ottieni character controller del player
+        interactionController = GetComponent<InteractionController>(); //Otteniamo il componente che si occupa di gestire le query agli IInteractable
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -38,6 +40,15 @@ public class PlayerControllerOld : MonoBehaviour
         // I comandi devono essere richiamanti ogni istatnte
         Move();
         Look();
+        Interact();
+    }
+
+    private void Interact()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            interactionController.Interact();
+        }
     }
 
     // Gestione del movimento 
@@ -49,11 +60,11 @@ public class PlayerControllerOld : MonoBehaviour
         // -- GESTIONE MOVIMENTO --
         Vector3 moveDir = transform.right * moveX + transform.forward * moveZ;
 
-        // --- GESTIONE GRAVITÀ & SALTO ---
+        // --- GESTIONE GRAVITï¿½ & SALTO ---
         bool isGrounded = characterController.isGrounded; // controlla se il player sta toccando il terreno
         if (isGrounded && verticalVelocity < 0f)
         {
-            // Un leggero “ancoraggio” al suolo per evitare il rimbalzo
+            // Un leggero ï¿½ancoraggioï¿½ al suolo per evitare il rimbalzo
             verticalVelocity = groundedGravity;
         }
         // Salto

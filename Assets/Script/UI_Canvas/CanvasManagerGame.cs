@@ -8,6 +8,8 @@ public class CanvasManagerGame : MonoBehaviour
     [SerializeField] private TMP_InputField inputFieldSalva;
     [SerializeField] private TextMeshProUGUI testoSalva;
 
+    [SerializeField] private TextMeshProUGUI interactionLabel;
+
     private void Awake()
     {
         /*
@@ -48,5 +50,15 @@ public class CanvasManagerGame : MonoBehaviour
     public void CaricaScenaWorld()
     {
         SceneManager.LoadScene("World");
+    }
+
+    public void SetInteractionLabel(string label)
+    {
+        interactionLabel.text = "E: " + label;
+    }
+    
+    public void ResetInteractionLabel()
+    {
+        interactionLabel.text = "";
     }
 }
