@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     // ** NOTE: REGISTRARE IL CANVAS QUANDO E' PRONTO
     //SECONDO MODO LEZIONE UI
     public CanvasManagerGame CanvasManagerGame { get; set; } // Property per il Canvas Manager Game
-    public CanvasManagerWorld CanvasManagerWorld { get; set; } // Property per il Canvas Manager World
+    public CanvasManagerWorld CanvasManagerWorld { get; set; } // Property per il Canvas Manager World (Aggiunto per l'Interact, solo se non si usa CanvsaManagerGame)
 
     private void Awake()
     {

@@ -52,6 +52,7 @@ public class CanvasManagerGame : MonoBehaviour
         SceneManager.LoadScene("World");
     }
 
+    #region STEP 2
     public void SetInteractionLabel(string label)
     {
         interactionLabel.text = "E: " + label;
@@ -61,4 +62,5 @@ public class CanvasManagerGame : MonoBehaviour
     {
         interactionLabel.text = "";
     }
+    #endregion
 }
