@@ -33,7 +33,7 @@ PARTE 2 - Con Animation e Animator
       - Primo: Ruotare semplicemente le tangenti della curva
       - Secondo: Rompere la tangente e smanettare con una delle due
       - Terzo: Rompere la tengente e una delle due farla " Wighted "
-      - Quarto: Aggiungere un keyframe in mezzo e smanettare con le tangenti
+      - Quarto: Aggiungere un keyframe al secondo 3:30 e smanettare con le tangenti
 8) Mostra le curve di interpolazione (Linear, Ease In, Ease Out, Ease In Out)
   - Rendi l'animazione del cubo più " curva " e non " lineare "
 9) Metti in scena una Luce chiamata " LuceAnimata "
@@ -42,9 +42,23 @@ PARTE 2 - Con Animation e Animator
   - Crea una nuova animazione per far cambiare il colore del testo
 
 PARTE 3 - Con l'interfaccia IInteractable
-1) Carica la Scene " World "
-2) Seleziona un albero nella scena e aggiungi un BoxCollider
+1)Carica la Scene " World "
+2)Seleziona un albero nella scena e aggiungi un BoxCollider
   - Imposta il BoxCollider
   - Controlla che non sia " Static "
-3) Fai l'animazione " CadutaAlbero " per far cadere l'albero
+3)Fai l'animazione " CadutaAlbero " per far cadere l'albero
   - Controlla di aver messo " Pivot " e no " Center "
+    - Due modi per fare questa animazione:
+	  - Fare un GameObject vuoto come Padre dell'albero e farci l'animazione sopra
+	  - Cambiare la Rotazione dell'albero in X=-90 , Y=90 , Z=-90
+	- In ogni caso, ruotare sull'asse Z (GLOBAL e non LOCAL)
+4)Apri l'Animator dell'albero
+  - Controlla che l'animazione non sia in Loop
+  - Crea un Empty State
+    - Setta come Default State l'Empty State
+  - Da Any State crea una transizione verso l'animazione " CadutaAlbero "
+    - Togli la " Has Exit Time "
+    - Crea un Trigger Parameter chiamato " IsCaduta "
+5)Crea lo script " Alberello " per far interagire il player con l'albero
+  - Implementa l'interfaccia IInteractable
+  - Nella funzione Interact() fai partire l'animazione " CadutaAlbero "
