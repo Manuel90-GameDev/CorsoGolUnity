@@ -1,36 +1,40 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerControllerThirdPerson : MonoBehaviour
 {
+    //STEP 1
     [Header("Parametri movimento")]
-    [SerializeField] private float walkSpeed = 2f;
-    [SerializeField] private float runSpeed = 6f;
+    [SerializeField] private float walkSpeed = 2f;   // Velocità camminata
+    [SerializeField] private float runSpeed = 6f;    // Velocità corsa
 
+    //STEP 2
     [Header("Parametri camera")]
-    [SerializeField] private Transform playerCamera;
-    [SerializeField] float yawSens = 120f;
-    [SerializeField] float pitchSens = 120f;
-    [SerializeField] float minPitch = -30f;     // guarda giù
-    [SerializeField] float maxPitch = 60f;      // guarda su
+    [SerializeField] private Transform playerCamera;   // Riferimento alla camera del giocatore
+    [SerializeField] float yawSens = 120f;             // Sensibilità orizzontale
+    [SerializeField] float pitchSens = 120f;           // Sensibilità verticale
+    [SerializeField] float minPitch = -30f;            // guarda giù
+    [SerializeField] float maxPitch = 60f;             // guarda su
 
+    //STEP 3
     [Header("Jump & Gravity")]
     [SerializeField] float jumpHeight = 1.6f;        // Altezza del salto in metri
-    [SerializeField] float gravity = -9.81f;         // Gravit�
+    [SerializeField] float gravity = -9.81f;         // Gravita'
     [SerializeField] float groundedGravity = -2f;    // Spinta verso il basso per restare ancorati al terreno
 
     // Variabili cache
-    CharacterController characterController;
-    private float pitch; // Rotazione camera verticale
-    private float verticalVelocity; // Velocit� verticale accumulata (gravit�/salto)
+    CharacterController characterController;   // Riferimento al CharacterController
+    private float pitch;                       // Rotazione camera verticale
+    private float verticalVelocity;            // Velocit� verticale accumulata (gravit�/salto)
     float currentSpeed;
 
     private void Start()
     {
-        pitch = NormalizeAngle(playerCamera.localEulerAngles.x);
-        Cursor.lockState = CursorLockMode.Locked; // Blocca il cursore
-        characterController = GetComponent<CharacterController>(); // Salva componente CC
+        //STEP 2
+        pitch = NormalizeAngle(playerCamera.localEulerAngles.x);    // Inizializza angolo camera
+
+        Cursor.lockState = CursorLockMode.Locked;                   // Blocca il cursore
+        characterController = GetComponent<CharacterController>();  // Salva componente CC
     }
 
     private void Update()
@@ -40,10 +44,7 @@ public class PlayerControllerThirdPerson : MonoBehaviour
 
     }
 
-    private void LateUpdate()
-    {
-    }
-
+    // STEP 2
     // Rotate camera
     private void Look()
     {
@@ -62,9 +63,11 @@ public class PlayerControllerThirdPerson : MonoBehaviour
 
     }
 
+    // STEP 1
     // Movimento del player
     private void Move()
     {
+        //STEP 1
         // (WASD)
         float horizontal = Input.GetAxis("Horizontal"); // Rileva input orizzontale (AD)
         float vertical = Input.GetAxis("Vertical"); // Rileva input verticale (WS)
@@ -84,6 +87,8 @@ public class PlayerControllerThirdPerson : MonoBehaviour
             // Un leggero �ancoraggio� al suolo per evitare il rimbalzo
             verticalVelocity = groundedGravity;
         }
+
+        //STEP 3
         // Salto
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
@@ -101,6 +106,7 @@ public class PlayerControllerThirdPerson : MonoBehaviour
         characterController.Move(movement * Time.deltaTime); // Muovo il player 
     }
 
+    //STEP 2
     // Questa funzione serve a converte i gradi passati come parametro in un intervallo piu comodo
     // Serve ad evitare che gli angoli crescano oltre i 360 gradi o sotto gli 0 gradi
     // Serve ad avere delle rotazioni di camera piu fluide
