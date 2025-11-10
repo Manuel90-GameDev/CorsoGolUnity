@@ -1,4 +1,11 @@
 Rientra come extra lezione se rimane tempo
+Divisa in 3 step:
+Step 1: Movimento del Player con WASD
+Step 2: Movimento della Camera con il Mouse
+Step 3: Salto del Player con Barra Spaziatrice
+
+-------------------------
+
 1) Crea una scene " ThirdPersonController "
 2) Crea un Plane ( Ground ) e scala X:2 Z:2
 3) Crea un Capsule ( Player ) e posizionala Y:1
