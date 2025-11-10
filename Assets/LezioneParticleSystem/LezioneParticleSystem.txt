@@ -1,0 +1,46 @@
+Mostrare 3 Particle System in Unity:
+1) Magic Burst: Esplosione di particelle colorate.
+2) Smoke Puff: Una nuvola di fumo che si dissolve lentamente.
+3) Fire: Fiamme in stile falò.
+
+- Crea la Scena "ParticleSystemScene".
+
+
+########### Magic Burst (effetto iniziale o d’impatto): ###########
+Contenuti da mostrare:
+- Emission rate e burst singolo.
+- Start lifetime, start speed, start size.
+- Shape (Sphere o Cone).
+- Gravity modifier = 0 per effetti "magici".
+- Color over Lifetime con un gradiente (es. da giallo/arancio -> trasparente).
+- Material con additive shader (Particles/Additive).
+
+1) Crea un GameObject ( GameObject -> Effects -> Particle System ) e rinominalo "MagicBurst".
+2) Configura il Particle System con i seguenti parametri:
+  - Main (Magic Burst):
+    . Duration = 1.0
+    . Looping = false
+    . Start Lifetime = 0.5
+    . Start Speed = 6.0
+    . Start Size = 0.1
+    . Start Color = RGB(255, 220, 100) (giallo/arancio)
+    . Gravity Modifier = 0
+    . Simulation Space = Local (si sposta con il GameObject)
+    . Play on Awake = true
+    . Max Particles = 100
+  - Emission:
+    . Rate over Time = 0
+    . Bursts: Aggiungi un burst con Time = 0, Count = 50
+  - Shape:
+    . Shape = Sphere
+    . Radius = 0.1
+    . Arc = 360
+  - Color over Lifetime:
+    . Crea un gradiente da giallo/arancio a trasparente:
+      . Inizio: Giallo brillante (RGB 255, 230, 120)
+      . Metà: Arancio (RGB 255, 150, 50) -> Click destro sotto per aggiungere un punto
+      . Fine: Trasparente
+  - Size over Lifetime:
+    . Abilita e imposta la curva da 1 a 0 (particelle che si riducono fino a scomparire).
+  - Renderer:
+    . Lasciare così com'è o assegnare un materiale con shader Additive (Particles/Additive).
