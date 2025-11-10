@@ -44,3 +44,56 @@ Contenuti da mostrare:
     . Abilita e imposta la curva da 1 a 0 (particelle che si riducono fino a scomparire).
   - Renderer:
     . Lasciare così com'è o assegnare un materiale con shader Additive (Particles/Additive).
+
+
+########### Smoke Puff (fumo o polvere): ###########
+Contenuti da mostrare:
+- Shape = Cone o Box per dare direzione.
+- Texture di fumo (soft round alpha).
+- Alpha over Lifetime (fade in/out).
+- Size over Lifetime (espansione).
+- Color over Lifetime (grigio -> trasparente).
+- Simulation Space = World (per fumo che rimane nell’ambiente).
+
+1) Crea un GameObject ( GameObject -> Effects -> Particle System ) e rinominalo "SmokePuff".
+2) Configura il Particle System con i seguenti parametri:
+  - Main (Smoke Puff):
+    . Duration = 2.0
+    . Looping = false
+    . Start Lifetime = 1.5
+    . Start Speed = 0.5
+    . Start Size = 0.5
+    . Start Color = RGB(180, 180, 180, 255) (grigio chiaro)
+    . Gravity Modifier = -0.1 (per fumo che sale)
+    . Simulation Space = World
+    . Play on Awake = true
+    . Max Particles = 50
+  - Emission:
+    . Rate over Time = 0
+    . Bursts: Aggiungi un burst con Time = 0, Count = 30
+  - Shape:
+    . Shape = Cone
+    . Angle = 25
+    . Radius = 0.2
+    . Arc = 360
+  - Color over Lifetime:
+    . Crea un gradiente da grigio a trasparente:
+      . Inizio: Grigio medio (RGB 180, 180, 180)
+      . Metà: Grigio chiaro (RGB 200,200,200,180)
+      . Fine: Trasparente (Alpha 0)
+  - Size over Lifetime:
+    . Abilita e imposta la curva da 0.5 a 1.5 (particelle che si espandono).
+  - Alpha over Lifetime:
+    . Abilita e imposta la curva da 0.2 a 1 (effetto dissipazione).
+  - Noise (per movimento casuale del fumo):
+    . Strength = 0.5.
+    . Frequency = 0.5.
+    . Octaves = 1.
+  - Renderer:
+    . Render Mode = Billboard.
+    . Material: Legacy Shaders/Particles/Alpha Blended
+      . Main Texture: Assegna una texture di fumo (va bene anche quella del Default-Particle).
+      . Tint Color: bianco puro (255,255,255)
+
+
+########### Fire (fiamme): ###########
