@@ -1,0 +1,18 @@
+Rientra come extra lezione se rimane tempo
+Divisa in 3 step:
+Step 1: Movimento del Player con WASD
+Step 2: Movimento della Camera con il Mouse
+Step 3: Salto del Player con Barra Spaziatrice
+
+-------------------------
+
+1) Crea una scene " ThirdPersonController "
+2) Crea un Plane ( Ground ) e scala X:2 Z:2
+3) Crea un Capsule ( Player ) e posizionala Y:1
+  - Aggiungi un Cube ( Eyes ) come figlio della Capsule per fare gli occhi
+  - Aggiungi un CharacterController come componente della Capsule
+4) Crea i seguenti Materiali:
+  - PlayerMaterial ( verde )
+  - EyesMaterial ( blu )
+5) Metti la Camera come figlia degli Eyes e posizionala Z:-10 Y:5 e ruotala X:25
+6) Crea uno script C# " ThirdPersonController " e attaccalo alla Capsule
