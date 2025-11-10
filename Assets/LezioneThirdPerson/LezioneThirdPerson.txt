@@ -7,7 +7,7 @@ Step 3: Salto del Player con Barra Spaziatrice
 -------------------------
 
 1) Crea una scene " ThirdPersonController "
-2) Crea un Plane ( Ground ) e scala X:2 Z:2
+2) Crea un Plane ( Ground ) e scala X:5 Z:5
 3) Crea un Capsule ( Player ) e posizionala Y:1
   - Aggiungi un Cube ( Eyes ) come figlio della Capsule per fare gli occhi
   - Aggiungi un CharacterController come componente della Capsule
@@ -16,3 +16,4 @@ Step 3: Salto del Player con Barra Spaziatrice
   - EyesMaterial ( blu )
 5) Metti la Camera come figlia degli Eyes e posizionala Z:-10 Y:5 e ruotala X:25
 6) Crea uno script C# " ThirdPersonController " e attaccalo alla Capsule
+7) Fai un piccolo livello per testare il movimento (aggiungi qualche cubo come ostacolo)
