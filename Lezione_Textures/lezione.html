@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texture e UV Mapping</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .maindiv {
+            background-color: #2d2d2d;
+            margin: 20px auto;
+            padding: 40px;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h1, h2, h3 {
+            color: #6c5ce7;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 0;
+            text-align: center;
+            border-bottom: 3px solid #6c5ce7;
+            padding-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 2em;
+            border-bottom: 2px solid #555;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+        }
+
+        p, div {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .x {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .y {
+            color: #51cf66;
+            font-weight: bold;
+        }
+
+        .z {
+            color: #4dabf7;
+            font-weight: bold;
+        }
+
+        /* Stili per le immagini */
+        .img-center {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .img-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .img-row img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #555;
+            margin: 30px 0;
+        }
+
+        ul {
+            margin-left: 40px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        #canvas-container {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        #canvas3d {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .texture-controls {
+            background-color: #1f1f1f;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+            border: 1px solid #444;
+        }
+
+        .texture-controls h3 {
+            margin-top: 0;
+            text-align: center;
+            color: #6c5ce7;
+        }
+
+        .texture-input-group {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .texture-input-group label {
+            font-weight: bold;
+            min-width: 180px;
+            color: #b0b0b0;
+        }
+
+        .texture-input-group input[type="file"] {
+            flex: 1;
+            padding: 8px;
+            background-color: #3a3a3a;
+            color: #e0e0e0;
+            border: 1px solid #555;
+            border-radius: 5px;
+        }
+
+        .texture-input-group input[type="file"]::file-selector-button {
+            background-color: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .texture-input-group input[type="file"]::file-selector-button:hover {
+            background-color: #5b4cdb;
+        }
+
+        .texture-input-group button {
+            padding: 8px 20px;
+            background-color: #6c5ce7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .texture-input-group button:hover {
+            background-color: #5b4cdb;
+        }
+
+        .texture-input-group button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .maindiv {
+                margin: 10px;
+                padding: 20px;
+            }
+
+            .texture-input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .texture-input-group label {
+                min-width: auto;
+            }
+        }
+    </style>
+    <!-- Three.js con importmap per moduli ES6 -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="maindiv">
+        <h1>Texture e UV Mapping</h1>
+        
+        <section>
+            <p>
+                Dopo aver completato la modellazione di un oggetto o personaggio, è necessario creare le texture, 
+                cioè rappresentare la superficie del modello in modo realistico.
+            </p>
+            <p>
+                Grazie alle texture, gli artisti riescono a rappresentare fedelmente superfici come legno, pietra, 
+                metallo, marmo e vetro, con dettagli quali parti sporche, meno lucide o più lucide.
+            </p>
+            <p>
+                Immaginiamo di dover creare un tavolo di legno: abbiamo modellato l'oggetto, ma appare tutto grigio 
+                con il materiale di base che il software di modellazione attribuisce automaticamente. Come possiamo 
+                quindi attribuire tutte le peculiarità di una superficie legnosa - venature, colore, scalfiture, 
+                parti ruvide o più lisce? Ci servono le texture.
+            </p>
+            <p>
+                Prima di arrivare alle texture e al loro funzionamento, bisogna capire che un modello 3D è 
+                rappresentato da vertici (vertex) collegati tra loro da lati (edges), che a loro volta formano i 
+                poligoni (faces che, nel nostro caso, non devono superare i 4 lati) nello spazio 3D. Significa che 
+                ogni vertice ha delle coordinate <span class="x">X</span>, <span class="y">Y</span>, 
+                <span class="z">Z</span>.
+            </p>
+            <p>
+                Le texture sono immagini quadrate rappresentate da pixel nello spazio 2D; ciò significa che anche 
+                questi pixel hanno delle coordinate, coppie che rappresentano un punto sul piano della texture. 
+                Queste coordinate sono dette UV, dove la U rappresenta l'asse X mentre la V rappresenta l'asse Y.
+            </p>
+            <p>
+                Cosa significa quindi creare una mappa UV del modello 3D? Semplicemente significa associare a ogni 
+                vertice 3D una coordinata UV su un piano bidimensionale, in modo che, una volta applicata la texture, 
+                l'engine (lo shader) sia in grado di associare il pixel che risiede in un punto UV a un punto 3D 
+                dello spazio sull'oggetto.
+            </p>
+            <p>
+                Fare le UV significa quindi "spalmare" l'oggetto 3D sul piano 2D, come quando creiamo un cubo con 
+                un foglio di carta ritagliando le varie parti a forma di croce e poi piegandole per formare un cubo. 
+                Bisogna indicare sul software quale o quali lati "tagliare" affinché il modello possa "aprirsi" 
+                (unfold) per essere appiattito correttamente.
+            </p>
+            <p>
+                Ad esempio, un cilindro dovrebbe essere tagliato lungo uno dei lati che percorre la sua altezza e 
+                lungo le circonferenze delle due basi, in modo da "scoperchiarlo" e "srotolarlo".
+            </p>
+
+            <div class="img-row">
+                <img src="res/UV_Cube.webp" alt="UV Cube Layout" width="500">
+                <img src="res/UV_Cube_2.png" alt="UV Cube 3D" width="500">
+            </div>
+
+            <div class="img-row">
+                <img src="res/UV_Cylinder.jpg" alt="UV Cylinder Unwrap" width="500">
+                <img src="res/UV_Cylinder_2.jpg" alt="UV Cylinder 3D" width="500">
+            </div>
+
+            <p>
+                Ogni modello ha le sue UV e sono necessarie per applicare le texture correttamente. A volte è 
+                necessario disporre le UV anche in modi strategici per ottenere comportamenti adeguati su shader 
+                particolari (vedremo meglio cosa significa questo).
+            </p>
+            <p>
+                Il piano in cui vengono disposte le UV è detto UDIM, e ha le coordinate normalizzate (quindi con 
+                valori compresi tra 0 e 1). Di UDIM ce ne possono essere più di una, ma i game engine sono in 
+                grado di leggere solo la prima (1001).
+            </p>
+
+            <img src="res/UDIMs.webp" alt="UDIM Grid" class="img-center">
+            
+            <img src="res/UDIM_1001.png" alt="UDIM 1001" class="img-center" style="max-width: 500px;">
+        </section>
+
+        <section>
+            <h2>Tipologie di Texture</h2>
+            <p>
+                Le texture non servono soltanto a dare colore ai modelli 3D. Le texture fanno molto altro: possono 
+                descrivere come la luce interagisce con la superficie della mesh, simulare la presenza di piccoli 
+                rilievi o incavi, descrivere quanto una superficie riflette e/o disperde la luce, o ancora se è 
+                metallica o meno, e molto altro.
+            </p>
+            <p>
+                Tutte queste texture sono solitamente basate sulle stesse UV del modello 3D e la maggior parte si 
+                basa sul principio di pesature: dove la texture ha colore nero vale 0, mentre dove è bianca vale 1; 
+                tutte le scale di grigio sono valori compresi tra 0 e 1.
+            </p>
+            <p>
+                Prima di passare a vedere le texture nello specifico, capiamo come un'immagine, come appunto una 
+                texture, è formata e codificata.
+            </p>
+            <p>
+                Le immagini sono formate da pixel; ogni pixel contiene informazioni di colore all'interno di 3 canali 
+                diversi (RGB) e alcuni tipi permettono anche un canale aggiuntivo detto "alpha". In base al tipo di 
+                immagine, ogni canale viene codificato con un certo numero di bit (solitamente 8 o 16). Questi canali, 
+                presi singolarmente e poi mescolati insieme, formano il colore finale del pixel.
+            </p>
+            <p>
+                Prendiamo ad esempio una texture formata da 9 pixel (3x3) e scomponiamo i 3 canali (abbiamo così 3 
+                volte la stessa texture; ogni canale è in scala di grigi):
+            </p>
+
+            <img src="res/textures_channel.png" alt="Canali RGB" class="img-center" style="max-width: 800px;">
+
+            <p>
+                È possibile quindi notare come il mix dei vari canali di un pixel formi il colore finale.
+            </p>
+
+            <hr>
+
+            <h3>Base Color (Albedo)</h3>
+            <p>
+                Questa texture rappresenta il colore base/disegno da applicare al modello 3D. Non è quindi in scala 
+                di grigi, ma contiene colori derivanti dal mix dei 3 canali. A volte può contenere informazioni anche 
+                nel canale alpha, che viene utilizzato per la trasparenza oppure per salvare un'altra texture in 
+                scala di grigi (essendo un canale singolo, è possibile salvare immagini in scala di grigi perché ogni 
+                pixel ha un solo canale).
+            </p>
+
+            <div class="img-row">
+                <img src="res/Esempio_albedo.webp" alt="Albedo Example 1" width="300">
+                <img src="res/Esempio_albedo2.jpeg" alt="Albedo Example 2" width="300">
+                <img src="res/Esempio_albedo3.jpg" alt="Albedo Example 3" width="300">
+            </div>
+
+            <h3>Roughness</h3>
+            <p>
+                Questa texture è in scala di grigi. I suoi pesi (da 0 a 1, cioè da 0 a 255 come informazione salvata 
+                nel singolo canale del pixel) indicano quanto una superficie è ruvida (1) o liscia (0). Le sfumature 
+                di grigio sono quelle che rendono correttamente il materiale.
+            </p>
+            <p>
+                Esiste anche la texture di Smoothness che lavora al contrario: è liscia a 1 ed è ruvida a 0. Si 
+                ottiene con un "One minus" (cioè: Smoothness = 1 - Roughness oppure Roughness = 1 - Smoothness).
+            </p>
+
+            <div class="img-row">
+                <img src="res/Esempio_roughness.jpg" alt="Roughness Example 1" width="300">
+                <img src="res/Esempio_roughness2.webp" alt="Roughness Example 2" width="300">
+                <img src="res/Esempio_roughness3.png" alt="Roughness Example 3" width="300">
+            </div>
+
+            <h3>Metalness (Metallic)</h3>
+            <p>
+                Questa texture indica quanto una superficie è metallica (1) o non metallica (0). Normalmente, nel 
+                mondo reale, un materiale è metallico oppure no, non ci sono vie di mezzo; pertanto solitamente in 
+                questa texture non si usano le sfumature, anche se per rendere risultati particolari si può 
+                sfruttare la sfumatura di questa mappa (anche per superfici non realmente metalliche, ad esempio il vetro).
+            </p>
+
+            <div class="img-row">
+                <img src="res/Esempio_metalness.jpg" alt="Metalness Example 1" width="300">
+                <img src="res/Esempio_metalness2.jpg" alt="Metalness Example 2" width="300">
+            </div>
+
+            <h3>Normal Map</h3>
+            <p>
+                Questa texture è importantissima perché permette di simulare un rilievo o un incavo su una superficie 
+                senza dover aggiungere vertici e poligoni che impatterebbero sulle performance.
+            </p>
+            <p>
+                Per salvare le informazioni di come la superficie è inclinata, questa texture usa 3 canali (<span class="x">R</span>, <span class="y">G</span>, <span class="z">B</span>). 
+                Ogni pixel contiene in questi 3 canali le 3 componenti <span class="x">X</span>, <span class="y">Y</span>, 
+                <span class="z">Z</span> (rispettivamente in <span class="x">R</span>, <span class="y">G</span>, 
+                <span class="z">B</span>) del 
+                vettore normale al poligono virtuale presente in quel punto (il vettore normale è un vettore 
+                perpendicolare alla superficie del poligono).
+            </p>
+
+            <img src="res/Textures_normal_mappig.png" alt="Normal Mapping Explanation" class="img-center" style="max-width: 800px;">
+
+            <p>La normal map risultante di questa superficie è quindi la seguente:</p>
+
+            <img src="res/Esempio_normal.png" alt="Normal Map Example" class="img-center" style="max-width: 400px;">
+
+            <p>Esistono due tipi di normal map:</p>
+            <ul>
+                <li>Normal Map DirectX</li>
+                <li>Normal Map OpenGL</li>
+            </ul>
+            <p>
+                Queste differiscono soltanto per come sono orientati gli assi e quindi il modo in cui vengono salvate 
+                le componenti del vettore. Si può tranquillamente passare da una all'altra invertendo le componenti 
+                nel modo corretto. Unreal Engine utilizza le normal map in DirectX, mentre Unity quelle in OpenGL.
+            </p>
+
+            <div class="img-row">
+                <img src="res/Esempio_normal2.jpg" alt="Normal Map Example 2" width="300">
+                <img src="res/normal_maps1.jpg" alt="Normal Map Comparison" width="300">
+                <img src="res/Normal1.png" alt="Normal Map Example 3" width="300">
+            </div>
+        </section>
+
+        <section>
+            <h2>Esempio Pratico: Cubo 3D con Texture UV</h2>
+            <p>
+                Qui sotto puoi vedere un cubo 3D con la texture UV applicata. Usa il mouse per ruotare, zoomare e 
+                muovere la camera:
+            </p>
+            
+            <div class="texture-controls">
+                <h3>Carica Texture Personalizzate</h3>
+                
+                <div class="texture-input-group">
+                    <label for="baseColorInput">Base Color (Albedo):</label>
+                    <input type="file" id="baseColorInput" accept="image/*">
+                    <button onclick="loadCustomTexture('baseColor')">Applica</button>
+                </div>
+                
+                <div class="texture-input-group">
+                    <label for="metalnessInput">Metalness Map:</label>
+                    <input type="file" id="metalnessInput" accept="image/*">
+                    <button onclick="loadCustomTexture('metalness')">Applica</button>
+                </div>
+                
+                <div class="texture-input-group">
+                    <label for="roughnessInput">Roughness Map:</label>
+                    <input type="file" id="roughnessInput" accept="image/*">
+                    <button onclick="loadCustomTexture('roughness')">Applica</button>
+                </div>
+                
+                <div class="texture-input-group">
+                    <label for="normalInput">Normal Map:</label>
+                    <input type="file" id="normalInput" accept="image/*">
+                    <button onclick="loadCustomTexture('normal')">Applica</button>
+                </div>
+                
+                <div class="texture-input-group">
+                    <button onclick="resetToDefaults()" style="width: 100%;">Ripristina Texture Predefinite</button>
+                </div>
+            </div>
+
+            <div id="canvas-container">
+                <canvas id="canvas3d"></canvas>
+            </div>
+        </section>
+
+        <script type="module">
+            import * as THREE from 'three';
+            import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+            import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+
+            // Setup della scena Three.js
+            let scene, camera, renderer, cube, controls
+            let clock = new THREE.Clock();
+            let currentMaterial = null;
+            
+            // Percorsi texture di default
+            const defaultTextures = {
+                baseColor: 'res/Cube_UVLayout.png',
+                metalness: 'res/Cube_Metalness.png',
+                roughness: 'res/Cube_Roughness.png',
+                normal: 'res/Normal1.png'
+            };
+
+            function init() {
+                // Creare la scena
+                scene = new THREE.Scene();
+                scene.background = new THREE.Color(0x404040);
+
+                // Creare la camera
+                camera = new THREE.PerspectiveCamera(
+                    75, 
+                    document.getElementById('canvas-container').clientWidth / 
+                    document.getElementById('canvas-container').clientHeight, 
+                    0.1, 
+                    1000
+                );
+                camera.position.set(200, 200, 200);
+                camera.lookAt(0, 0, 0);
+
+                // Creare il renderer
+                const canvas = document.getElementById('canvas3d');
+                renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+                renderer.setSize(
+                    document.getElementById('canvas-container').clientWidth,
+                    document.getElementById('canvas-container').clientHeight
+                );
+
+                // Aggiungere luci
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+                scene.add(ambientLight);
+
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+                directionalLight.position.set(10, 10, 10);
+                scene.add(directionalLight);
+
+                const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+                directionalLight2.position.set(-10, -10, -10);
+                scene.add(directionalLight2);
+
+                // OrbitControls per interazione con mouse
+                controls = new OrbitControls(camera, renderer.domElement);
+                controls.enableDamping = true;
+                controls.dampingFactor = 0.05;
+
+                // Caricare le texture
+                const textureLoader = new THREE.TextureLoader();
+                
+                // Texture base (albedo/diffuse)
+                const baseTexture = textureLoader.load(
+                    'res/Cube_UVLayout.png',
+                    function() {
+                        console.log('Texture base caricata con successo');
+                    },
+                    undefined,
+                    function(err) {
+                        console.error('Errore nel caricamento della texture base:', err);
+                    }
+                );
+
+                // Mappa Metalness (opzionale - se il file esiste verrà caricato)
+                // Nell'immagine: bianco = metallico, nero = non metallico
+                const metalnessMap = textureLoader.load(
+                    'res/Cube_Metalness.png',
+                    function() {
+                        console.log('Metalness map caricata con successo');
+                    },
+                    undefined,
+                    function(err) {
+                        console.warn('Metalness map non trovata, usando valore uniforme');
+                    }
+                );
+
+                // Mappa Roughness (opzionale - se il file esiste verrà caricato)
+                // Nell'immagine: bianco = ruvido, nero = liscio/lucido
+                const roughnessMap = textureLoader.load(
+                    'res/Cube_Roughness.png',
+                    function() {
+                        console.log('Roughness map caricata con successo');
+                    },
+                    undefined,
+                    function(err) {
+                        console.warn('Roughness map non trovata, usando valore uniforme');
+                    }
+                );
+
+                // Mappa Normal (opzionale - per aggiungere dettagli di superficie)
+                const normalMap = textureLoader.load(
+                    'res/Normal1.png',
+                    function() {
+                        console.log('Normal map caricata con successo');
+                    },
+                    undefined,
+                    function(err) {
+                        console.warn('Normal map non trovata');
+                    }
+                );
+
+                // Caricare il modello FBX
+                const fbxLoader = new FBXLoader();
+                fbxLoader.load(
+                    'res/Cube.fbx',
+                    function(object) {
+                        // Applicare le texture al modello
+                        object.traverse(function(child) {
+                            if (child.isMesh) {
+                                // Creare un materiale PBR completo
+                                child.material = new THREE.MeshStandardMaterial({
+                                    map: baseTexture,              // Texture base (colore)
+                                    metalnessMap: metalnessMap,    // Mappa metallicità
+                                    metalness: 1,                 // Valore base se non c'è la mappa (0-1)
+                                    roughnessMap: roughnessMap,    // Mappa rugosità
+                                    roughness: 1,                 // Valore base se non c'è la mappa (0-1)
+                                    normalMap: normalMap,          // Mappa normale
+                                    normalScale: new THREE.Vector2(1, 1), // Intensità della normal map
+                                    side: THREE.DoubleSide
+                                });
+                                currentMaterial = child.material; // Salva riferimento al materiale
+                            }
+                        });
+
+                        // Centrare il modello
+                        const box = new THREE.Box3().setFromObject(object);
+                        const center = box.getCenter(new THREE.Vector3());
+                        object.position.sub(center);
+
+                        cube = object;
+                        scene.add(cube);
+                        console.log('Modello FBX caricato con successo');
+                    },
+                    function(xhr) {
+                        console.log((xhr.loaded / xhr.total * 100) + '% caricato');
+                    },
+                    function(error) {
+                        console.error('Errore nel caricamento del modello FBX:', error);
+                        
+                        // Fallback: creare un cubo semplice se il modello non si carica
+                        const geometry = new THREE.BoxGeometry(2, 2, 2);
+                        const material = new THREE.MeshStandardMaterial({ 
+                            map: baseTexture,
+                            metalnessMap: metalnessMap,
+                            metalness: 0.5,
+                            roughnessMap: roughnessMap,
+                            roughness: 0.7,
+                            normalMap: normalMap
+                        });
+                        cube = new THREE.Mesh(geometry, material);
+                        scene.add(cube);
+                        currentMaterial = material; // Salva riferimento al materiale
+                        console.log('Utilizzato cubo fallback');
+                    }
+                );
+
+                // Gestire il resize della finestra
+                window.addEventListener('resize', onWindowResize, false);
+
+                // Avviare l'animazione
+                animate();
+            }
+
+            function onWindowResize() {
+                const container = document.getElementById('canvas-container');
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                
+                const time = clock.getElapsedTime();
+
+                controls.update();
+                renderer.render(scene, camera);
+            }
+
+            // Inizializzare quando il DOM è pronto
+            window.addEventListener('DOMContentLoaded', init);
+
+            // Funzione per caricare texture personalizzate
+            window.loadCustomTexture = function(type) {
+                let inputId, textureProperty;
+                
+                switch(type) {
+                    case 'baseColor':
+                        inputId = 'baseColorInput';
+                        textureProperty = 'map';
+                        break;
+                    case 'metalness':
+                        inputId = 'metalnessInput';
+                        textureProperty = 'metalnessMap';
+                        break;
+                    case 'roughness':
+                        inputId = 'roughnessInput';
+                        textureProperty = 'roughnessMap';
+                        break;
+                    case 'normal':
+                        inputId = 'normalInput';
+                        textureProperty = 'normalMap';
+                        break;
+                    default:
+                        console.error('Tipo di texture non valido');
+                        return;
+                }
+                
+                const input = document.getElementById(inputId);
+                const file = input.files[0];
+                
+                if (!file) {
+                    alert('Seleziona prima un file!');
+                    return;
+                }
+                
+                if (!currentMaterial) {
+                    alert('Il modello non è ancora caricato!');
+                    return;
+                }
+                
+                // Creare URL dal file
+                const url = URL.createObjectURL(file);
+                
+                // Caricare la texture
+                const loader = new THREE.TextureLoader();
+                loader.load(
+                    url,
+                    function(texture) {
+                        // Applicare la texture al materiale
+                        currentMaterial[textureProperty] = texture;
+                        currentMaterial.needsUpdate = true;
+                        console.log(`${type} texture caricata con successo`);
+                        alert(`Texture ${type} applicata con successo!`);
+                    },
+                    undefined,
+                    function(error) {
+                        console.error(`Errore nel caricamento della texture ${type}:`, error);
+                        alert(`Errore nel caricamento della texture ${type}`);
+                    }
+                );
+            }
+
+            // Funzione per ripristinare le texture predefinite
+            window.resetToDefaults = function() {
+                if (!currentMaterial) {
+                    alert('Il modello non è ancora caricato!');
+                    return;
+                }
+                
+                const loader = new THREE.TextureLoader();
+                
+                // Ricaricare tutte le texture di default
+                loader.load(defaultTextures.baseColor, function(texture) {
+                    currentMaterial.map = texture;
+                    currentMaterial.needsUpdate = true;
+                });
+                
+                loader.load(defaultTextures.metalness, function(texture) {
+                    currentMaterial.metalnessMap = texture;
+                    currentMaterial.needsUpdate = true;
+                });
+                
+                loader.load(defaultTextures.roughness, function(texture) {
+                    currentMaterial.roughnessMap = texture;
+                    currentMaterial.needsUpdate = true;
+                });
+                
+                loader.load(defaultTextures.normal, function(texture) {
+                    currentMaterial.normalMap = texture;
+                    currentMaterial.needsUpdate = true;
+                });
+                
+                // Resettare gli input file
+                document.getElementById('baseColorInput').value = '';
+                document.getElementById('metalnessInput').value = '';
+                document.getElementById('roughnessInput').value = '';
+                document.getElementById('normalInput').value = '';
+                
+                alert('Texture ripristinate ai valori predefiniti!');
+                console.log('Texture ripristinate ai valori predefiniti');
+            }
+        </script>
+    </div>
+</body>
+</html>
