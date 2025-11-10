@@ -97,3 +97,8 @@ Contenuti da mostrare:
 
 
 ########### Fire (fiamme): ###########
+Contenuti da mostrare:
+- Uso di più sistemi coordinati.
+- Sorting Layer e materiali diversi.
+- Looping, emission rate costante.
+- Come ottimizzare (limitare max particles, prewarm, culling).
