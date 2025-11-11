@@ -20,9 +20,14 @@ public class Fireplace : MonoBehaviour, IInteractable
 
     public string interactionLabel => "Accendi fuoco";
 
-    [SerializeField] private Light fireLight;
+    //STEP 1: Lezione Interactable
+    //[SerializeField] private Light fireLight;
+
+    //STEP 2: Lezione Particle System
+    [SerializeField] private GameObject firePatticle;
+
     public void Interaction()
     {
-        fireLight.gameObject.SetActive(!fireLight.gameObject.activeInHierarchy);
+        firePatticle.SetActive(!firePatticle.activeInHierarchy);
     }
 }
