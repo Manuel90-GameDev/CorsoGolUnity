@@ -106,29 +106,29 @@ Contenuti da mostrare:
 Crea un GameObject vuoto chiamato FireFX
 - Al suo interno aggiungi 3 Particle System figli:
   . FlameCore – la fiamma principale.
-  . Glow – il bagliore caldo attorno alla fiamma.
-  . Smoke – il fumo che si alza.
+  . Sparks – le scintille che partono dai tizzoni ardenti.
 
 1) Crea un GameObject vuoto chiamato "FireFX".
-2) Al suo interno, crea 3 Particle System figli: "FlameCore", "Glow", "Smoke".
+2) Al suo interno, crea 3 Particle System figli: "FlameCore", "Sparks".
 3) Configura il Particle System "FlameCore" con i seguenti parametri:
   - Main (Flame Core):
-    . Duration = 1.5
+    . Duration = 5
     . Looping = true
     . Start Lifetime = 0.8
-    . Start Speed = 0.2
-    . Start Size = 0.4
+    . Start Speed = 2.8
+    . Start Size = 0.5
     . Start Color = RGB(255,180,50) (arancio caldo)
-    . Gravity Modifier = -0.2 (fiamma che sale)
+    . Gravity Modifier = 0
     . Simulation Space = Local
+    . Simulated Speed = 0.5
     . Play on Awake = true
-    . Max Particles = 50
+    . Max Particles = 1000
   - Emission:
-    . Rate over Time = 25
+    . Rate over Time = 40
   - Shape:
     . Shape = Cone
-    . Angle = 15
-    . Radius = 0.05
+    . Angle = 0
+    . Radius = 0.1
     . Arc = 360
   - Color over Lifetime:
     . Crea un gradiente da arancio a giallo chiaro a trasparente:
