@@ -134,39 +134,48 @@ Crea un GameObject vuoto chiamato FireFX
     . Crea un gradiente da arancio a giallo chiaro a trasparente:
       . Inizio: Arancio brillante (RGB 255,190,80)
       . Metà: Rosso (RGB 255,100,0)
-      . Fine: Trasparente
+      . 75%: Trasparente
   - Size over Lifetime:
-    . Abilita e imposta la Curva crescente → decrescente (a forma di campana):
-      . Inizio: 0.3
-      . Metà: 1.0
-      . Fine: 0.0
-  - Noise:
-    . Strength = 0.3
-    . Frequency = 0.5
-    . Octaves = 1
+    . Abilita e imposta la curva da 1.5 a 0.
+  - Rotation over Lifetime:
+    . Angular Velocity = 60.
   - Renderer:
     . Render Mode = Billboard.
-    . Material: Legacy Shaders/Particles/Additive
-      . Main Texture: Assegna una texture di fiamma (puoi usare una texture circolare sfumata o il Default-Particle).
-4) Configura il Particle System "Glow" con i seguenti parametri:
-  - Main (Glow):
-    . Duration = 1
+    . Material: Legacy Shaders/Mobile/Additive
+      . Main Texture: Assegna una texture di fiamma (puoi usare la texture "FlameParticle" (da passare ai corsisti) o il Default-Particle).
+4) Configura il Particle System "Sparks" con i seguenti parametri:
+  - Main (Sparks):
+    . Duration = 2
     . Looping = true
-    . Start Lifetime = 0.5
-    . Start Speed = 0
-    . Start Size = 0.6
-    . Start Color = RGB(255,200,100,120) (traslucido)
-    . Gravity Modifier = 0
-    . Simulation Space = Local
+    . Start Lifetime = 0.8
+    . Start Speed = 2.5
+    . Start Size = 1
+    . Start Color = RGB(255,230,120,120) (giallo/arancio brillante)
+    . Gravity Modifier = 0.3
+    . Simulation Space = WOrld
     . Play on Awake = true
-    . Max Particles = 1000
+    . Max Particles = 60
   - Emission:
-    . Rate over Time = 10
+    . Rate over Time = 3
   - Shape:
-    . Shape = Sphere
-    . Radius = 0.1
+    . Shape = Cone
+    . Angle = 10
+    . Radius = 0.05
+  - Velocity over Lifetime:
+    . Linear X: Random between two constants = -0.2 to 0.2
+    . Linear Y: Random between two constants = 1.5 to 0
+    . Linear Z: Random between two constants = -0.2 to 0.2
+  - Color over Lifetime:
+  . Crea un gradiente da giallo brillante a trasparente:
+      . Inizio: Giallo brillante (RGB 255,230,100)
+      . Metà: Arancio (RGB 255,140,40)
+      . Fine: Trasparente
   - Size over Lifetime:
     . Abilita e imposta la curva da 1 a 0.
+  - Noise:
+    . Strength = 0.3
+    . Frequency = 0.8
+    . Octaves = 1
   - Renderer:
     . Render Mode = Billboard.
     . Material: Legacy Shaders/Particles/Additive
