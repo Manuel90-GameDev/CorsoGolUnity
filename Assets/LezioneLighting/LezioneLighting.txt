@@ -39,5 +39,9 @@ BUILT-IN (Se si usano i portatili di ANT)
   - Sposta un oggetto statico per far vedere l'ombra "Cucinata" =D
 16) Rifai un Bake con l'Ambient Occlusion impostato nei Settings
 17) Metti una Reflection Probe
+18) Fai l'ultimo Bake
+19) Metti il LightGroupProbe (se usi la Built-in Render Pipeline)
+  - Spiega che serve per rendirizzare la luce su oggetti DINAMICI
 
 POST PROCESSING (Solo se c'è tempo)
+1) Installa il Post Processing tramite il Package Manager (se usi la Built-in Render Pipeline)
