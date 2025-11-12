@@ -45,3 +45,23 @@ BUILT-IN (Se si usano i portatili di ANT)
 
 POST PROCESSING (Solo se c'è tempo)
 1) Installa il Post Processing tramite il Package Manager (se usi la Built-in Render Pipeline)
+2) Spiega il Post Processing Stack v2
+  - È una tecnica che applica effetti grafici dopo che l’immagine è stata renderizzata, proprio come avviene nella post-produzione di foto e video.
+3) Crea un Layer "PostProcessing"
+4) Aggiungi alla Camera il componente "Post Process Layer"
+  - Imposta il Layer su "PostProcessing"
+5) Aggiungi alla Camera un componente "Post Process Volume"
+  - Metti il flag "Is Global"
+  - Crea un nuovo Profile
+6) Descrivi i principali effetti del Post Processing:
+  - Color Grading: Cambia i toni di colore della scena, per dare un look "caldo", "freddo" o da "film horror".
+  - Bloom: Aggiunge un bagliore agli oggetti luminosi (perfetto per neon, luci forti, magie).
+  - Depth of Field (DOF): Sfoca gli oggetti lontani o vicini, simulando la messa a fuoco di una fotocamera.
+  - Motion Blur: Sfocatura quando la camera o un oggetto si muove velocemente.
+  - Vignette: Oscura i bordi dello schermo per un effetto cinematografico.
+  - Chromatic Aberration: Simula un effetto di dispersione della luce ai bordi, come in alcune lenti.
+  - Ambient Occlusion: Aggiunge ombre nelle intersezioni tra oggetti, per dare più profondità alla scena.
+  - Screen Space Reflections (SSR): Riflessi realistici senza usare cubemap o reflection probes.
+  - Lens Distortion: Distorsione dell'immagine come se si guardasse attraverso una lente deformante.
+  - Auto Exposure: Simula l'adattamento della luminosità della fotocamera alle condizioni di luce variabili.
+  - Grain: Aggiunge una texture di "rumore" per simulare la grana della pellicola fotografica.
